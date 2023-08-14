@@ -30,4 +30,6 @@ class PostgreSQL(Connection):
         )
         if self.connection_factory is not None:
             connect_kwargs['connection_factory'] = self.connection_factory
-        return connect(**connect_kwargs)
+        conn = connect(**connect_kwargs)
+        conn.set_client_encoding('UTF8')
+        return conn
